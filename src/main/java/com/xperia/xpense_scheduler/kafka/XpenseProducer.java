@@ -5,18 +5,17 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Properties;
+import org.springframework.stereotype.Component;
 import java.util.concurrent.Future;
 
+@Component
 public class XpenseProducer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(XpenseProducer.class);
     private final KafkaProducer<String, String> producer;
 
-    public XpenseProducer(){
-        Properties props = KafkaProducerConfig.getProducerProperties();
-        this.producer = new KafkaProducer<>(props);
+    public XpenseProducer(KafkaProducer<String, String> producer){
+        this.producer = producer;
     }
 
     public void send(String topic, String key, String value){
