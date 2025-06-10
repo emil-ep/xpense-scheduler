@@ -29,7 +29,10 @@ public class JobManager implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        scheduleJob("MutualFundTrackerJob", "*/5 * * * * *");
+        //Runs every 5 second
+//        scheduleJob("MutualFundTrackerJob", "*/5 * * * * *");
+        //Runs every 5 minutes
+        scheduleJob("MutualFundTrackerJob", "0 0/5 * * * ?");
     }
 
     private void scheduleJob(String name, String cronExpression){
