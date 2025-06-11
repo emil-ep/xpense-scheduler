@@ -23,3 +23,7 @@ mutualFund:
 kafka:
   bootstrap:
     server: localhost:9092
+
+logging:
+  level:
+    root: INFO
