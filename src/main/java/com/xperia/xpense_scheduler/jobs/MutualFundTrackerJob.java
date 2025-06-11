@@ -62,8 +62,8 @@ public class MutualFundTrackerJob implements ScheduledJob{
         }
         Long endTime = System.currentTimeMillis();
         long timeTaken = endTime - startTime;
-        Long timeTakenInMins = TimeUnit.MINUTES.convert(timeTaken, TimeUnit.MILLISECONDS);
-        LOGGER.info("Completed MutualFundTrackerJob in {} minutes", timeTakenInMins);
+        Long timeTakenInSeconds = TimeUnit.SECONDS.convert(timeTaken, TimeUnit.MILLISECONDS);
+        LOGGER.info("Completed MutualFundTrackerJob in {} seconds", timeTakenInSeconds);
         jobStatus.setStatus(JobStatusEnum.COMPLETED);
         jobStatusService.saveStatus(jobStatus);
     }

@@ -27,3 +27,14 @@ kafka:
 logging:
   level:
     root: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ['prometheus']
+  endpoint:
+    prometheus:
+      enabled: true
+    health:
+      show-details: always
