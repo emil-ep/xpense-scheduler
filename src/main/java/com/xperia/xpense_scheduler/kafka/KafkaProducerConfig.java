@@ -1,5 +1,7 @@
 package com.xperia.xpense_scheduler.kafka;
 
+import com.xperia.xpense_scheduler.jobs.models.MutualFundScheme;
+import com.xperia.xpense_scheduler.jobs.models.MutualFundSchemeSerializer;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -22,12 +24,12 @@ public class KafkaProducerConfig {
         Properties props = new Properties();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, serverAddress);
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, MutualFundSchemeSerializer.class.getName());
         return props;
     }
 
     @Bean
-    public KafkaProducer<String, String> kafkaProducer(Properties kafkaProducerProperties){
+    public KafkaProducer<String, MutualFundScheme> kafkaProducer(Properties kafkaProducerProperties){
         return new KafkaProducer<>(kafkaProducerProperties);
     }
 }
