@@ -55,6 +55,7 @@ public class MutualFundTrackerJob implements ScheduledJob{
         if (response != null){
             LOGGER.debug("Received data : {}", response.length);
             List<MutualFundScheme> list = List.of(response);
+            LOGGER.info("Number of schemes received : {}", list.size());
             list.forEach(scheme -> {
                 kafkaProducer.send("mf_scheme", "scheme", scheme);
                 LOGGER.debug("Send value {} to topic : {}", scheme, "mf_scheme");
