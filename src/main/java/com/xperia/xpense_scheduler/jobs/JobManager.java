@@ -32,7 +32,7 @@ public class JobManager implements InitializingBean {
         //Runs every 5 second
 //        scheduleJob("MutualFundTrackerJob", "*/5 * * * * *");
         //Runs every 5 minutes
-        scheduleJob("MutualFundTrackerJob", "0 0/5 * * * ?");
+        scheduleJob("MutualFundTrackerJob", "0 23 12 * * ?");
     }
 
     private void scheduleJob(String name, String cronExpression){

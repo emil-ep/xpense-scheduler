@@ -2,7 +2,6 @@ package com.xperia.xpense_scheduler.jobs;
 
 
 import com.xperia.xpense_scheduler.jobs.models.JobStatus;
-import com.xperia.xpense_scheduler.jobs.models.JobStatusEnum;
 import com.xperia.xpense_scheduler.jobs.models.MutualFundScheme;
 import com.xperia.xpense_scheduler.kafka.XpenseProducer;
 import com.xperia.xpense_scheduler.services.JobStatusService;
@@ -12,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import org.xperia.models.JobStatusEnum;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
