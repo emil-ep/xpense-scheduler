@@ -1,7 +1,7 @@
 package com.xperia.xpense_scheduler.kafka;
 
-import com.xperia.xpense_scheduler.jobs.models.MutualFundScheme;
-import com.xperia.xpense_scheduler.jobs.models.MutualFundSchemeSerializer;
+import com.xperia.xpense_scheduler.models.entity.mf.MutualFundScheme;
+import com.xperia.xpense_scheduler.models.MutualFundSchemeSerializer;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
