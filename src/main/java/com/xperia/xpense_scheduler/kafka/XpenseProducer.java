@@ -6,22 +6,21 @@ import org.apache.kafka.clients.producer.RecordMetadata;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import org.xperia.models.MutualFundSchemeConsumerModel;
 
 import java.util.concurrent.Future;
 
 @Component
-public class XpenseProducer {
+public class XpenseProducer<K, V> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(XpenseProducer.class);
-    private final KafkaProducer<String, MutualFundSchemeConsumerModel> producer;
+    private final KafkaProducer<K, V> producer;
 
-    public XpenseProducer(KafkaProducer<String, MutualFundSchemeConsumerModel> producer){
+    public XpenseProducer(KafkaProducer<K, V> producer){
         this.producer = producer;
     }
 
-    public void send(String topic, String key, MutualFundSchemeConsumerModel value){
-        ProducerRecord<String, MutualFundSchemeConsumerModel> record = new ProducerRecord<>(topic, key, value);
+    public void send(String topic, K key, V value){
+        ProducerRecord<K, V> record = new ProducerRecord<>(topic, key, value);
         try{
             Future<RecordMetadata> future = producer.send(record);
             RecordMetadata metadata = future.get();
