@@ -1,6 +1,5 @@
 package com.xperia.xpense_scheduler.kafka;
 
-import com.xperia.xpense_scheduler.models.entity.mf.MutualFundScheme;
 import com.xperia.xpense_scheduler.models.MutualFundSchemeSerializer;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -9,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.xperia.models.MutualFundSchemeConsumerModel;
 
 import java.util.Properties;
 
@@ -29,7 +29,7 @@ public class KafkaProducerConfig {
     }
 
     @Bean
-    public KafkaProducer<String, MutualFundScheme> kafkaProducer(Properties kafkaProducerProperties){
+    public KafkaProducer<String, MutualFundSchemeConsumerModel> kafkaProducer(Properties kafkaProducerProperties){
         return new KafkaProducer<>(kafkaProducerProperties);
     }
 }
