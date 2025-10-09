@@ -2,7 +2,6 @@ package com.xperia.xpense_scheduler.jobs;
 
 
 import com.xperia.xpense_scheduler.models.entity.tracker.JobStatus;
-import com.xperia.xpense_scheduler.models.entity.mf.MutualFundScheme;
 import com.xperia.xpense_scheduler.jobs.scheduler.ScheduledJob;
 import com.xperia.xpense_scheduler.kafka.XpenseProducer;
 import com.xperia.xpense_scheduler.services.JobStatusService;
@@ -13,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.xperia.models.JobStatusEnum;
+import org.xperia.models.MutualFundSchemeConsumerModel;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -52,10 +52,10 @@ public class MutualFundTrackerJob implements ScheduledJob {
         LOGGER.info("Executing MutualFundTrackerJob");
         JobStatus jobStatus = new JobStatus("MutualFundTrackerJob", System.currentTimeMillis(), JobStatusEnum.STARTED);
         jobStatus = jobStatusService.saveStatus(jobStatus);
-        MutualFundScheme[] response = restTemplate.getForObject(mutualFundUrl, MutualFundScheme[].class);
+        MutualFundSchemeConsumerModel[] response = restTemplate.getForObject(mutualFundUrl, MutualFundSchemeConsumerModel[].class);
         if (response != null){
             LOGGER.debug("Received data : {}", response.length);
-            List<MutualFundScheme> list = List.of(response);
+            List<MutualFundSchemeConsumerModel> list = List.of(response);
             LOGGER.info("Number of schemes received : {}", list.size());
             list.forEach(scheme -> {
                 kafkaProducer.send("mf_scheme", "scheme", scheme);

@@ -1,17 +1,17 @@
 package com.xperia.xpense_scheduler.models;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.xperia.xpense_scheduler.models.entity.mf.MutualFundScheme;
 import org.apache.kafka.common.header.Headers;
 import org.apache.kafka.common.serialization.Serializer;
+import org.xperia.models.MutualFundSchemeConsumerModel;
 
-public class MutualFundSchemeSerializer implements Serializer<MutualFundScheme> {
+public class MutualFundSchemeSerializer implements Serializer<MutualFundSchemeConsumerModel> {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
 
     @Override
-    public byte[] serialize(String topic, MutualFundScheme mutualFundScheme) {
+    public byte[] serialize(String topic, MutualFundSchemeConsumerModel mutualFundScheme) {
         try {
             return objectMapper.writeValueAsBytes(mutualFundScheme);
         } catch (Exception e) {
@@ -20,7 +20,7 @@ public class MutualFundSchemeSerializer implements Serializer<MutualFundScheme> 
     }
 
     @Override
-    public byte[] serialize(String topic, Headers headers, MutualFundScheme data) {
+    public byte[] serialize(String topic, Headers headers, MutualFundSchemeConsumerModel data) {
         return Serializer.super.serialize(topic, headers, data);
     }
 
