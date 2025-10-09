@@ -58,8 +58,13 @@ public class MutualFundTrackerJob implements ScheduledJob {
             List<MutualFundSchemeConsumerModel> list = List.of(response);
             LOGGER.info("Number of schemes received : {}", list.size());
             list.forEach(scheme -> {
-                kafkaProducer.send("mf_scheme", "scheme", scheme);
-                LOGGER.debug("Send value {} to topic : {}", scheme, "mf_scheme");
+                try{
+                    kafkaProducer.send("mf_scheme", "scheme", scheme);
+                    LOGGER.debug("Send value {} to topic : {}", scheme, "mf_scheme");
+                }catch (Exception ex){
+                    kafkaProducer.close();
+                    LOGGER.error("Error sending message through producer");
+                }
             });
         }
         Long endTime = System.currentTimeMillis();
