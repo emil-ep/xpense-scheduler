@@ -1,4 +1,4 @@
-package com.xperia.xpense_scheduler.jobs.models;
+package com.xperia.xpense_scheduler.models.entity.mf;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

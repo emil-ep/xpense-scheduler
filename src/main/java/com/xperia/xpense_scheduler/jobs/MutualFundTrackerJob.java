@@ -1,8 +1,9 @@
 package com.xperia.xpense_scheduler.jobs;
 
 
-import com.xperia.xpense_scheduler.jobs.models.JobStatus;
-import com.xperia.xpense_scheduler.jobs.models.MutualFundScheme;
+import com.xperia.xpense_scheduler.models.entity.tracker.JobStatus;
+import com.xperia.xpense_scheduler.models.entity.mf.MutualFundScheme;
+import com.xperia.xpense_scheduler.jobs.scheduler.ScheduledJob;
 import com.xperia.xpense_scheduler.kafka.XpenseProducer;
 import com.xperia.xpense_scheduler.services.JobStatusService;
 import org.slf4j.Logger;
@@ -17,7 +18,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Component("MutualFundTrackerJob")
-public class MutualFundTrackerJob implements ScheduledJob{
+public class MutualFundTrackerJob implements ScheduledJob {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MutualFundTrackerJob.class);
 

@@ -1,4 +1,4 @@
-package com.xperia.xpense_scheduler.jobs;
+package com.xperia.xpense_scheduler.jobs.scheduler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

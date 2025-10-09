@@ -1,6 +1,7 @@
-package com.xperia.xpense_scheduler.jobs.models;
+package com.xperia.xpense_scheduler.models;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.xperia.xpense_scheduler.models.entity.mf.MutualFundScheme;
 import org.apache.kafka.common.header.Headers;
 import org.apache.kafka.common.serialization.Serializer;
 
