@@ -9,6 +9,7 @@ import com.xperia.xpense_scheduler.services.MutualFundSchemeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.xperia.models.JobStatusEnum;
 
@@ -23,12 +24,13 @@ public class MutualFundDetailJob implements ScheduledJob {
 
     private final JobStatusService jobStatusService;
 
-    private final XpenseProducer kafkaProducer;
+    private final XpenseProducer<String, String> kafkaProducer;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MutualFundDetailJob.class);
 
     @Autowired
-    public MutualFundDetailJob(XpenseProducer kafkaProducer, JobStatusService jobStatusService, MutualFundSchemeService mutualFundSchemeService){
+    public MutualFundDetailJob(@Qualifier("mutualFundDetailXpenseProducer") XpenseProducer<String, String> kafkaProducer,
+                               JobStatusService jobStatusService, MutualFundSchemeService mutualFundSchemeService){
         this.kafkaProducer = kafkaProducer;
         this.jobStatusService = jobStatusService;
         this.mutualFundSchemeService = mutualFundSchemeService;
@@ -54,7 +56,7 @@ public class MutualFundDetailJob implements ScheduledJob {
         }
 
         schemes.get().forEach(scheme -> {
-            kafkaProducer.send("scheme_detail", "schemeCode", null);
+            kafkaProducer.send("scheme_detail", "schemeCode", scheme.getCode());
         });
 
 

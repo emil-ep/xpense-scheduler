@@ -5,11 +5,9 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import java.util.concurrent.Future;
 
-@Component
 public class XpenseProducer<K, V> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(XpenseProducer.class);

@@ -42,6 +42,7 @@ public class MfDatasourceConfig {
                 .build();
     }
 
+    @Bean(name = "mfTransactionManager")
     public PlatformTransactionManager mfTransactionManager(
             @Qualifier("mfEntityManagerFactory") EntityManagerFactory mfEntityManagerFactory){
         return new JpaTransactionManager(mfEntityManagerFactory);
