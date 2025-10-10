@@ -8,6 +8,7 @@ import com.xperia.xpense_scheduler.services.JobStatusService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -26,7 +27,7 @@ public class MutualFundTrackerJob implements ScheduledJob {
 
     private final JobStatusService jobStatusService;
 
-    private final XpenseProducer kafkaProducer;
+    private final XpenseProducer<String, MutualFundSchemeConsumerModel> kafkaProducer;
 
     @Value("${mutualFund.api.url}")
     private String mutualFundUrl;
@@ -35,7 +36,8 @@ public class MutualFundTrackerJob implements ScheduledJob {
     private boolean jobEnabled;
 
     @Autowired
-    public MutualFundTrackerJob(RestTemplate restTemplate, JobStatusService jobStatusService, XpenseProducer kafkaProducer){
+    public MutualFundTrackerJob(RestTemplate restTemplate, JobStatusService jobStatusService,
+                                @Qualifier("mutualFundSchemeXpenseProducer") XpenseProducer<String, MutualFundSchemeConsumerModel> kafkaProducer){
         this.restTemplate = restTemplate;
         this.jobStatusService = jobStatusService;
         this.kafkaProducer = kafkaProducer;
