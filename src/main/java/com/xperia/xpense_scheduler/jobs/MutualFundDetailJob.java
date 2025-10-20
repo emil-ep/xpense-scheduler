@@ -56,7 +56,7 @@ public class MutualFundDetailJob implements ScheduledJob {
         }
 
         schemes.get().forEach(scheme -> {
-            kafkaProducer.send("scheme_detail", "schemeCode", scheme.getCode());
+            kafkaProducer.send("scheme_detail", scheme.getCode(), scheme.getCode());
         });
 
 
@@ -71,6 +71,6 @@ public class MutualFundDetailJob implements ScheduledJob {
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }
