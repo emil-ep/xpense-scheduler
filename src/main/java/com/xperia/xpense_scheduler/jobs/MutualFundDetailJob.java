@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.xperia.entities.mf.MutualFundScheme;
 import org.xperia.models.JobStatusEnum;
+import org.xperia.models.XpenseKafkaTopics;
 
 import java.util.List;
 import java.util.Optional;
@@ -56,7 +57,7 @@ public class MutualFundDetailJob implements ScheduledJob {
         }
 
         schemes.get().forEach(scheme -> {
-            kafkaProducer.send("scheme_detail", scheme.getCode(), scheme.getCode());
+            kafkaProducer.send(XpenseKafkaTopics.SCHEME_DETAIL.getName(), scheme.getCode(), scheme.getCode());
         });
 
 
