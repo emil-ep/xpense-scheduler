@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.xperia.models.JobStatusEnum;
 import org.xperia.models.MutualFundSchemeConsumerModel;
+import org.xperia.models.XpenseKafkaTopics;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -61,7 +62,7 @@ public class MutualFundTrackerJob implements ScheduledJob {
             LOGGER.info("Number of schemes received : {}", list.size());
             list.forEach(scheme -> {
                 try{
-                    kafkaProducer.send("mf_scheme", "scheme", scheme);
+                    kafkaProducer.send(XpenseKafkaTopics.MF_SCHEME.getName(), scheme.getSchemeCode(), scheme);
                     LOGGER.debug("Send value {} to topic : {}", scheme, "mf_scheme");
                 }catch (Exception ex){
                     kafkaProducer.close();

@@ -1,6 +1,6 @@
 package com.xperia.xpense_scheduler.services;
 
-import com.xperia.xpense_scheduler.models.entity.mf.MutualFundScheme;
+import org.xperia.entities.mf.MutualFundScheme;
 
 import java.util.List;
 import java.util.Optional;

@@ -3,7 +3,10 @@ package com.xperia.xpense_scheduler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {
+		"com.xperia.xpense_scheduler",
+		"org.xperia.repository"
+})
 public class XpenseSchedulerApplication {
 
 	public static void main(String[] args) {
