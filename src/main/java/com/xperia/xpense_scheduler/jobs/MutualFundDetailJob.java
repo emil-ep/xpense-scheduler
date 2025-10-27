@@ -4,7 +4,6 @@ import com.xperia.xpense_scheduler.jobs.scheduler.ScheduledJob;
 import com.xperia.xpense_scheduler.kafka.XpenseProducer;
 import com.xperia.xpense_scheduler.models.entity.tracker.JobStatus;
 import com.xperia.xpense_scheduler.services.JobStatusService;
-import com.xperia.xpense_scheduler.services.MutualFundSchemeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.xperia.entities.mf.MutualFundScheme;
 import org.xperia.models.JobStatusEnum;
 import org.xperia.models.XpenseKafkaTopics;
+import org.xperia.service.MutualFundSchemeService;
 
 import java.util.List;
 import java.util.Optional;
