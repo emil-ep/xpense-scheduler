@@ -19,6 +19,11 @@ import org.xperia.models.XpenseKafkaTopics;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * This job fetches all the available mutual fund schemes from the external system
+ * and then forwards the schemes to the consumer
+ * The consumer in turns takes the schemes and save it to the system
+ */
 @Component("MutualFundTrackerJob")
 public class MutualFundTrackerJob implements ScheduledJob {
 

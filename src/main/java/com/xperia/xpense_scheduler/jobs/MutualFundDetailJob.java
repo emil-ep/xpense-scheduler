@@ -18,6 +18,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * This job will take the already saved schemes from the database and then pushed it to
+ * the consumer
+ * The consumer in turn would fetch the complete detail of the scheme and save it to the database
+ */
 @Component("MutualFundDetailJob")
 public class MutualFundDetailJob implements ScheduledJob {
 
