@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    tracker:
+      jdbc-url: jdbc:h2:mem:tracker;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH
+      username: sa
+      password:
+      driver-class-name: org.h2.Driver
+    mf:
+      jdbc-url: jdbc:h2:mem:mf;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH
+      username: sa
+      password:
+      driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        globally_quoted_identifiers: false
+kafka:
+  bootstrap:
+    server: localhost:9092
+mutualFund:
+  api:
+    url: http://localhost
+  job:
+    enabled: false
+xpense:
+  internal:
+    tracker:
+      url: http://localhost
+      username: test
+      password: test
