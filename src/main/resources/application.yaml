@@ -45,3 +45,10 @@ management:
       enabled: true
     health:
       show-details: always
+
+xpense:
+  internal:
+    tracker:
+      url: http://localhost:8085
+      username: service
+      password: service
