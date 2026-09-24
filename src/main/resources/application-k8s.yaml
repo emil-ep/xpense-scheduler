@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    tracker:
+      jdbc-url: ${TRACKER_DATASOURCE_URL}
+      username: ${TRACKER_DATASOURCE_USERNAME}
+      password: ${TRACKER_DATASOURCE_PASSWORD}
+      driver-class-name: org.postgresql.Driver
+    mf:
+      jdbc-url: ${MF_DATASOURCE_URL}
+      username: ${MF_DATASOURCE_USERNAME}
+      password: ${MF_DATASOURCE_PASSWORD}
+      driver-class-name: org.postgresql.Driver
+
+kafka:
+  bootstrap:
+    server: ${KAFKA_BOOTSTRAP_SERVER}
+
+xpense:
+  internal:
+    tracker:
+      url: ${TRACKER_SERVICE_URL}
+      username: ${TRACKER_SERVICE_USERNAME}
+      password: ${TRACKER_SERVICE_PASSWORD}
