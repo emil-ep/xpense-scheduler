@@ -44,6 +44,14 @@ public class KafkaProducerConfig {
         return new KafkaProducer<>(props);
     }
 
+    @Bean(name = "stringValueProducer")
+    public KafkaProducer<String, String> stringValueProducer(Properties baseProducerProps){
+        Properties props = new Properties();
+        props.putAll(baseProducerProps);
+        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        return new KafkaProducer<>(props);
+    }
+
     @Bean("mutualFundSchemeXpenseProducer")
     public XpenseProducer<String, MutualFundSchemeConsumerModel> mutualFundSchemeXpenseProducer(
             @Qualifier("mutualFundProducer") KafkaProducer<String, MutualFundSchemeConsumerModel> kafkaProducer){
@@ -53,6 +61,11 @@ public class KafkaProducerConfig {
     @Bean("mutualFundDetailXpenseProducer")
     public XpenseProducer<String, String> mutualFundDetailXpenseProducer(
             @Qualifier("mutualFundDetailProducer") KafkaProducer<String, String> kafkaProducer){
+        return new XpenseProducer<>(kafkaProducer);
+    }
+
+    @Bean("mailMessageIdProducer")
+    public XpenseProducer<String, String> googleMessageIdProducer(@Qualifier("stringValueProducer") KafkaProducer<String, String> kafkaProducer){
         return new XpenseProducer<>(kafkaProducer);
     }
 }
