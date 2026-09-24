@@ -6,7 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication(scanBasePackages = {
 		"com.xperia.xpense_scheduler",
 		"org.xperia.repository",
-		"org.xperia.service"
+		"org.xperia.service",
+		"org.xperia.client"
 })
 public class XpenseSchedulerApplication {
 
