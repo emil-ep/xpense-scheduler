@@ -11,6 +11,15 @@ spring:
       password: ${MF_DATASOURCE_PASSWORD}
       driver-class-name: org.postgresql.Driver
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ['prometheus', 'health']
+  endpoint:
+    health:
+      show-details: always
+
 kafka:
   bootstrap:
     server: ${KAFKA_BOOTSTRAP_SERVER}
